@@ -1,14 +1,16 @@
 package es.jmg;
 
 public class Coche {
+    // Atributos generales para todas las instancias:
     private int ruedas;
     private int largo; // en cm
     private int ancho; // en cm
     private int motor; // cm.cúbicos (cc)
     private int pesoPlataforma; // la base común a distintos modelos
+    // Características particulares de cada instancia:
     private int pesoTotal;
     private String color;
-    boolean asientosCuero, climatizador;
+    private boolean asientosCuero, climatizador;
 
     // Método constructor para fijar valores iniciales
     public Coche(){

@@ -4,7 +4,7 @@ public class Coche {
     private int ruedas;
     private int largo; // en cm
     private int ancho; // en cm
-    private int motor; // cm.cúbiccos (cc)
+    private int motor; // cm.cúbicos (cc)
     private int pesoPlataforma; // la base común a distintos modelos
     private int pesoTotal;
     private String color;
@@ -135,7 +135,4 @@ public class Coche {
     public void setPesoPlataforma(int pesoPlataforma) {
         this.pesoPlataforma = pesoPlataforma;
     }
-    
-
-
 }

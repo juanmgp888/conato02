@@ -6,19 +6,85 @@ package es.jmg;
          * public GregorianCalendar(int year,
                          int month,
                          int dayOfMonth)
-
          */
-
-
 import java.util.Date;
 import java.util.GregorianCalendar;  // Hereda de Calendar, que contiene el método getTime(); Devuelve un obj de tipo Date
                                      // GregorianCalendar tiene getTimeZone();
-
 public class EmpleadoMain {
 
     // En el main de la clase EmpleadoMain, introducimos los datos. En la clase Empleado, los gestionamos.
     public static void main(String[] args) {
 
+    // Crearemos un arreglo que contenga a los empleados.
+    // Del mismo modo que declaramos un arreglo de tipo entero int[] numeros = new int[5]; 
+    // (o de la clase) String[] cadena = new String[4]; o String[] cadena = {"Pepe","Lolo","José","María"}; 
+    // creamos un arreglo de la clase Empleados. Contendrá sus instancias de clase u objetos.
+    // NO CONFUNDIR declaración de una instancia con la de un arreglo
+    // = new Empleado();  Llama al método constructor.Paréntesis  -- = new Empleado[4]; Corchetes
+    Empleado[] empleado = new Empleado[5];
+        empleado[0] = new Empleado("Pepe", 41000, 1999, 12, 7);
+        empleado[1] = new Empleado("Paco", 26000, 1997, 5, 4);
+        empleado[2] = new Empleado("Ana", 33000, 2013, 2, 2);
+        empleado[3] = new Empleado("Rosa", 44000, 2009, 12, 9);
+        empleado[4] = new Empleado("Ignacio"); // Sobrecarga de constructores. Llamamos al 2º constructor
+    // con un for tradicional
+        for (int i=0;i<empleado.length;i++){
+            empleado[i].subirSueldo(10);
+            System.out.println(empleado[i].getDatosEmpleado());
+        }
+    // con for each
+        for (Empleado empleadoConcreto : empleado) {
+            System.out.println(empleadoConcreto.getNombre()+", sueldo: "+empleadoConcreto.getSueldo());
+            
+            empleadoConcreto.subirSueldo(10);
+            System.out.println("Sueldo con el aumento: "+empleadoConcreto.getSueldo()) ;
+        }
+    }
+}
+
+class Empleado{
+    // Variables de clase. Privadas para encapsularlas. Que se modifiquen a través de setters
+    private final String nombre; //Una vez dado el valor inicial con es constructor, con el 'final' ya no podrá cambiar.
+    private double sueldo;
+    private Date fechaAltaContrato;
+    private int IdEmpleado;
+    public static int IdSiguiente; // Para incrementar el Id con cada nueva alta.
+
+
+    // Método constructor de la clase Empleado. Público, para poder ser invicado desde otras clases
+    public Empleado( String nombre, double sueldo, int anno, int mesAlta, int diaAlta){
+        this.nombre = nombre;
+        this.sueldo = sueldo;
+        GregorianCalendar calendario = new GregorianCalendar(anno, mesAlta-1,diaAlta);
+        // Le pasamos mesAlta - 1, porque esta clase indexa del [0-11].
+        this.fechaAltaContrato = calendario.getTime();  // getTime devuelve tipo Date. fechaAltaContrato definida como Date
+        this.IdEmpleado=IdSiguiente; // IdSiguiente es estática
+        IdSiguiente+=1; 
+    }
+    // Sobrecarga de constructores. Para poder dar otros valores iniciales.
+    // Por ejemplo, desconocemos alguno de los datos a la hora de dar de alta a un empleado.
+    public Empleado( String nombre){
+        //this.nombre = nombre;  // Pero sueldo y fecha de alta quedarían como 0 y null.
+        // OTRO USO del this es el de llamar a otro constuctor con el nº de parámetros que le estemos pasando ****************
+        this(nombre, 30000, 2024,01,01); // sueldo y fechaAlta por defecto cuando no los conozcamos
+    }
+    public void subirSueldo(int porcentaje){  // setter
+        double aumento = sueldo * porcentaje / 100;
+        sueldo +=aumento;
+    }
+    public String getDatosEmpleado(){
+        return "Id: "+IdEmpleado+", "+nombre+" , sueldo: "+sueldo+" , alta contrato: "+fechaAltaContrato;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public double getSueldo() {
+        return sueldo;
+    }
+    public Date getFechaAltaContrato() {
+        return fechaAltaContrato;
+    }
+}
     /* versión primera (sin array y sin campo estático Id)
         Empleado empleado1 = new Empleado("Pepe", 41000, 1999, 12, 7);
         Empleado empleado2 = new Empleado("Paco", 26000, 1997, 5, 4);
@@ -42,77 +108,3 @@ public class EmpleadoMain {
         " Euros. \n     Fecha de alta: "+empleado3.getFechaAltaContrato());  //getter
 
     */
-
-    // versión mejorada
-    // Crearemos un arreglo que contenga a los empleados.
-    // Del mismo modo que declaramos un arreglo de tipo entero int[] numeros = new int[5]; 
-    // (o de la clase) String[] cadena = new String[4]; o String[] cadena = {"Pepe","Lolo","José","María"}; 
-    // creamos un arreglo de la clase Empleados. Contendrá sus instancias de clase u objetos.
-    // NO CONFUNDIR declaración de una instancia con la de un arreglo
-    // = new Empleado();  Llama al método constructor.Paréntesis  -- = new Empleado[4]; Corchetes
-    Empleado[] empleado = new Empleado[4];
-        empleado[0] = new Empleado("Pepe", 41000, 1999, 12, 7);
-        empleado[1] = new Empleado("Paco", 26000, 1997, 5, 4);
-        empleado[2] = new Empleado("Ana", 33000, 2013, 2, 2);
-        empleado[3] = new Empleado("Rosa", 44000, 2009, 12, 9);
-    // con un for tradicional
-        for (int i=0;i<empleado.length;i++){
-            empleado[i].subirSueldo(10);
-            System.out.println(empleado[i].getDatosEmpleado());
-            
-        }
-
-    // con for each
-        for (Empleado empleadoConcreto : empleado) {
-            System.out.println(empleadoConcreto.getNombre()+", sueldo: "+empleadoConcreto.getSueldo());
-            
-            empleadoConcreto.subirSueldo(10);
-            System.out.println("Sueldo con el aumento: "+empleadoConcreto.getSueldo()) ;
-        }
-        
-    }
-}
-
-
-
-class Empleado{
-    // Variables de clase. Privadas para encapsularlas. Que se modifiquen a través de setters
-    private final String nombre; //Una vez dado el valor inicial con es constructor, con el 'final' ya no podrá cambiar.
-    private double sueldo;
-    private Date fechaAltaContrato;
-    private int IdEmpleado;
-    public static int IdSiguiente; // Para incrementar el Id con cada nueva alta.
-
-
-    // Método constructor de la clase Empleado. Público, para poder ser invicado desde otras clases
-    public Empleado( String nombre, double sueldo, int anno, int mesAlta, int diaAlta){
-        this.nombre = nombre;
-        this.sueldo = sueldo;
-        GregorianCalendar calendario = new GregorianCalendar(anno, mesAlta-1,diaAlta);
-        // Le pasamos mesAlta - 1, porque esta clase indexa del [0-11].
-        this.fechaAltaContrato = calendario.getTime();  // getTime devuelve tipo Date. fechaAltaContrato definida como Date
-        this.IdEmpleado=IdSiguiente; // IdSiguiente es estática
-        IdSiguiente+=1; 
-    }
-
-    public void subirSueldo(int porcentaje){  // setter
-        double aumento = sueldo * porcentaje / 100;
-        sueldo +=aumento;
-    }
-    public String getDatosEmpleado(){
-        return "Id: "+IdEmpleado+", "+nombre+" , sueldo: "+sueldo+" , alta contrato: "+fechaAltaContrato;
-    }
-        
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public double getSueldo() {
-        return sueldo;
-    }
-
-    public Date getFechaAltaContrato() {
-        return fechaAltaContrato;
-    }
-}

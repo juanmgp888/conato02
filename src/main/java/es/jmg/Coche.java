@@ -49,9 +49,8 @@ public class Coche {
 
     // Getters y Setters al final del código
     public String getDatosGenerales(){
-        return "El coche tiene "+ruedas+" ruedas, mide "+largo+" cm de largo, \n"+
-        ancho+" cm de ancho y con un motor de "+motor+" cc.\n"+"Es de color "+color+
-        ". "+hasClimatizador()+" "+hasAsientosCuero();
+        return "La plataforma (base) del vehículo tiene "+ruedas+" ruedas, mide "+largo+" cm de largo, \n"+
+        ancho+" cm de ancho y con un motor de "+motor+" cc.\n"+hasClimatizador()+hasAsientosCuero();
     }
 
     public int getPesoTotal() {
@@ -72,9 +71,9 @@ public class Coche {
     // is o has es una convención
     public String hasAsientosCuero() {  // Getter
         if (asientosCuero==true){
-        return "El coche tiene asientos de cuero.";
+        return "El vehículo tiene asientos de cuero.";
         } else {
-        return "El coche no tiene asientos de cuero, son de serie.";   
+        return "El vehículo no tiene asientos de cuero, son de serie.";   
         }
     }
 
@@ -86,9 +85,9 @@ public class Coche {
 
     public String hasClimatizador() {
         if (climatizador==true){
-        return "El coche tiene climatizador.";
+        return "El vehículo tiene climatizador.";
         } else {
-        return "El coche no tiene climatizador.";
+        return "El vehículo no tiene climatizador.";
         }
     }
 

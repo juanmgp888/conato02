@@ -8,7 +8,7 @@ public class Furgoneta extends Coche{
 
     // Constructor
     public Furgoneta(int capacidadCarga, int plazasExtra){
-        super(); // Llama al constructor padre para darle un estado inicial a Furgoneta.
+        super(); // Llama al constructor padre para darle un estado inicial a Furgoneta. (Sin parámetros en este ej.)
         this.capacidadCarga=capacidadCarga;
         this.plazasExtra=plazasExtra;
     }

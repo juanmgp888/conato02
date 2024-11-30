@@ -18,5 +18,11 @@ Clase Furgoneta. Herencia.
 ***** No es el mejor ejemplo de herencia Furgoneta entends Coche, pero nos sirve.
 ***** Generalmente, una subclase encaja en el paradigma ¿"Es un..." de la clase padre?
 Furgoneta no es un coche. Hubiera sido más acertado crear una clase padre Vehículo.
-Vehículo del que desciende al mismo nivel: Furgoneta, Coche, Camión, Moto
+Vehículo del que descienden al mismo nivel: Furgoneta, Coche, Camión, Moto
 
+Clase Jefe extends Clase Empleado 
+¿Es un Jefe siempre un Empleado? Sí, luego Jefe hereda de Empleado
+¿Es un Empleado siempre un Jefe? No.
+
+Empleado / Jefatura. Polimorfismo y Enlace Dinámico.
+super()
